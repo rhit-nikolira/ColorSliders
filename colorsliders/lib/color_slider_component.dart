@@ -4,11 +4,15 @@ class ColorSlider extends StatelessWidget {
   final String title;
   final double value;
   final Color color;
-  const ColorSlider(
-      {super.key,
-      required this.title,
-      required this.value,
-      required this.color});
+  final Function onChange;
+
+  const ColorSlider({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.color,
+    required this.onChange,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class ColorSlider extends StatelessWidget {
                 style: const TextStyle(fontSize: 20.0),
               ),
               Text(
-                "$value",
+                "${value.toStringAsFixed(3)}",
                 style: const TextStyle(fontSize: 20.0),
               ),
             ],
@@ -37,7 +41,7 @@ class ColorSlider extends StatelessWidget {
             thumbColor: color,
             activeColor: color,
             onChanged: (newValue) {
-              //setState(() => value = newValue);
+              onChange(newValue);
             },
           ),
         ],
